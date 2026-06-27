@@ -152,6 +152,28 @@
   color: var(--admin-gold);
 }
 
+/* ─── Admin Back Link ─── */
+.fa-admin-back-link {
+  display: block;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: var(--admin-radius-sm);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text-dim);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.fa-admin-back-link:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,215,0,0.25);
+  color: var(--admin-gold);
+}
+
 /* ─── Dashboard Layout ─── */
 .fa-admin-dashboard {
   max-width: 1400px;
