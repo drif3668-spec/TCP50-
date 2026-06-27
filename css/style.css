@@ -283,6 +283,93 @@ svg  { width: 100%; height: auto; display: block; }
 }
 
 /* ─────────────────────────────────────────
+   06B — ARAB COUNTRIES TIMING
+───────────────────────────────────────── */
+.arab-sec-no { background:rgba(29,184,255,.12)!important; color:#1DB8FF!important; border-color:rgba(29,184,255,.3)!important; }
+.cs-label { font-family:var(--mono); font-size:11px; letter-spacing:2px; color:var(--muted); margin-bottom:14px; text-transform:uppercase; }
+.country-btns { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+.cbtn {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 14px; border-radius:10px; border:1px solid var(--line);
+  background:var(--ink-2); color:var(--text); cursor:pointer;
+  font-family:'Cairo',sans-serif; font-size:13.5px; transition:all .22s;
+}
+.cbtn:hover,.cbtn.active {
+  border-color:rgba(29,184,255,.4); background:rgba(29,184,255,.08);
+  color:#1DB8FF; transform:translateY(-2px); box-shadow:0 6px 18px rgba(29,184,255,.12);
+}
+.cp-panel {
+  background:linear-gradient(135deg,rgba(29,184,255,.07),rgba(29,184,255,.02));
+  border:1px solid rgba(29,184,255,.2); border-radius:20px; padding:26px 28px;
+  margin-bottom:24px; animation:cpFadeUp .4s ease;
+}
+@keyframes cpFadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.cp-head { display:flex; align-items:center; gap:16px; margin-bottom:18px; }
+.cp-flag { font-size:44px; }
+.cp-name-box h3 { font-family:'Cairo'; font-weight:800; font-size:22px; }
+.cp-name-box p  { color:var(--muted); font-size:13px; margin-top:2px; }
+.tg-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(185px,1fr)); gap:12px; margin-bottom:14px; }
+.tg-box  { border-radius:12px; padding:14px 16px; border:1px solid rgba(255,255,255,.07); background:rgba(255,255,255,.04); }
+.tg-box .tg-lbl  { font-size:11px; color:var(--muted); margin-bottom:5px; letter-spacing:.4px; }
+.tg-box .tg-val  { font-family:var(--mono); font-weight:800; font-size:18px; line-height:1.2; }
+.tg-box .tg-note { font-size:11px; color:var(--muted); margin-top:3px; }
+.tg-start { border-color:rgba(51,229,161,.22)!important; }
+.tg-start .tg-val { color:var(--emerald); }
+.tg-end   { border-color:rgba(255,92,114,.2)!important;  }
+.tg-end   .tg-val { color:var(--crimson); }
+.tg-best  { border-color:rgba(244,196,78,.22)!important; }
+.tg-best  .tg-val { color:var(--amber);   }
+.tg-avoid { border-color:rgba(255,92,114,.14)!important; }
+.tg-avoid .tg-val { color:#d9877e; }
+.dst-badge {
+  display:inline-flex; align-items:center; gap:7px; margin-top:10px;
+  padding:9px 14px; background:rgba(244,196,78,.08);
+  border:1px solid rgba(244,196,78,.2); border-radius:10px; font-size:13px; color:var(--amber);
+}
+.arab-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:10px; }
+.ac-card {
+  background:var(--ink-2); border:1px solid var(--line); border-radius:14px;
+  padding:15px 14px; cursor:pointer; transition:all .28s;
+}
+.ac-card:hover,.ac-card.ac-active {
+  background:rgba(29,184,255,.07); border-color:rgba(29,184,255,.3);
+  transform:translateY(-4px); box-shadow:0 12px 28px rgba(0,0,0,.3);
+}
+.ac-card .acf { font-size:22px; margin-bottom:5px; }
+.ac-card .acn { font-family:'Cairo'; font-weight:700; font-size:13.5px; margin-bottom:8px; }
+.ac-card .acst{ font-family:var(--mono); font-size:14px; color:var(--emerald); font-weight:700; }
+.ac-card .acl { font-size:10.5px; color:var(--muted); margin-top:1px; }
+.ac-card .acd { font-size:10.5px; color:var(--amber); margin-top:5px; }
+
+/* Smart Plan Banner */
+.sp-banner {
+  margin-top:48px; border-radius:22px; padding:30px 34px;
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  flex-wrap:wrap; overflow:hidden; position:relative;
+  background:linear-gradient(135deg,rgba(155,92,255,.12),rgba(29,184,255,.07));
+  border:1px solid rgba(155,92,255,.28);
+}
+.sp-banner::after {
+  content:''; position:absolute; right:-60px; top:-60px; width:220px; height:220px;
+  background:rgba(155,92,255,.07); border-radius:50%; filter:blur(40px); pointer-events:none;
+}
+.sp-banner h3 { font-family:'Cairo'; font-weight:900; font-size:20px; margin-bottom:6px; }
+.sp-banner p  { color:var(--muted); font-size:14.5px; max-width:460px; line-height:1.65; }
+.sp-btn {
+  padding:13px 28px; background:linear-gradient(135deg,#9B5CFF,#1DB8FF); color:#fff;
+  border-radius:12px; font-family:'Cairo'; font-weight:800; font-size:15px;
+  text-decoration:none; white-space:nowrap; transition:all .22s; display:inline-block;
+  box-shadow:0 0 22px rgba(155,92,255,.3);
+}
+.sp-btn:hover { transform:translateY(-3px); box-shadow:0 10px 32px rgba(155,92,255,.5); color:#fff; }
+
+@media(max-width:640px){
+  .arab-grid{grid-template-columns:1fr 1fr}
+  .tg-grid{grid-template-columns:1fr 1fr}
+  .sp-banner{text-align:center;justify-content:center}
+}
+
+/* ─────────────────────────────────────────
    PRINT
 ───────────────────────────────────────── */
 @media print {
