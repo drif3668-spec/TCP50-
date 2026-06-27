@@ -3,145 +3,210 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="متجر احترافي للحسابات الممولة TCP50: حساب مجاني أو خدمة اجتياز اختبار TCP50 بتصميم أبيض وذهبي ثلاثي الأبعاد.">
-  <meta property="og:title" content="متجر الحسابات الممولة TCP50">
-  <meta property="og:description" content="اختر بين الحساب المجاني أو خدمة اجتياز اختبار TCP50.">
+  <meta name="description" content="FUNX.AI منصة FinTech احترافية للحسابات الممولة TCP50، الحساب المجاني وخدمة اجتياز الاختبار مع متابعة وإدارة رأس المال.">
+  <meta property="og:title" content="FUNX.AI — منصة الحسابات الممولة">
+  <meta property="og:description" content="ابدأ رحلتك نحو أول حساب ممول احترافي عبر تجربة Premium عالمية.">
   <meta property="og:type" content="website">
-  <title>متجر الحسابات الممولة — TCP50</title>
+  <title>FUNX.AI — منصة الحسابات الممولة</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/free-account.css">
 </head>
-<body class="fa-page">
+<body class="fa-page fa-platform">
   <div class="fa-bg" aria-hidden="true"></div>
 
   <nav class="fa-nav">
     <a href="index.html" class="fa-logo" aria-label="الصفحة الرئيسية">FUN<span>X</span>.AI</a>
     <div class="fa-nav-links">
-      <a href="index.html">الرئيسية</a>
-      <a href="smart-plan.html">خطة ذكية</a>
-      <a href="#store">المتجر</a>
-      <a href="#service-details">تفاصيل الخدمة</a>
-      <a href="#cart">السلة</a>
-      <a href="#faq">الأسئلة</a>
+      <a href="#platform">المنصة</a>
+      <a href="#global-stats">الأرقام</a>
+      <a href="#compare">المقارنة</a>
+      <a href="#products">المتجر</a>
+      <a href="#accounts">الحسابات</a>
+      <a href="#faq">FAQ</a>
     </div>
-    <a href="#store" class="fa-nav-cta">🎁 حساب مجاني</a>
+    <button type="button" class="fa-nav-cta" data-open-cart>السلة <span data-cart-count>0</span></button>
   </nav>
 
+  <aside class="fa-notification-center" id="notificationCenter" aria-live="polite">
+    <button type="button" class="fa-notify-toggle" data-open-notifications>الإشعارات <span data-notification-count>0</span></button>
+    <div class="fa-notify-panel" data-notification-panel>
+      <h3>مركز الإشعارات</h3>
+      <div data-notification-list></div>
+    </div>
+  </aside>
+
+  <aside class="fa-cart-drawer" data-cart-drawer aria-hidden="true">
+    <div class="fa-cart-head">
+      <div>
+        <span>Shopping Cart</span>
+        <h3>السلة</h3>
+      </div>
+      <button type="button" data-close-cart>×</button>
+    </div>
+    <div class="fa-cart-items" data-cart-items></div>
+    <div class="fa-cart-total">
+      <span>الإجمالي</span>
+      <strong data-cart-total>0$</strong>
+    </div>
+    <a href="free-account-checkout.html" class="fa-cart-checkout" data-checkout-link>متابعة</a>
+  </aside>
+
   <main>
-    <section class="fa-hero" id="register">
+    <section class="fa-hero fa-world-hero" id="platform">
+      <canvas id="faHeroWorld" aria-hidden="true"></canvas>
+      <div class="fa-light-lines" aria-hidden="true"></div>
       <div class="fa-hero-copy fa-reveal">
-        <span class="fa-kicker">متجر TCP50 · حسابات ممولة</span>
-        <h1>اختر طريقك نحو حساب ممول <span>50,000$</span></h1>
-        <p>ابدأ بالحساب المجاني أو اختر خدمة اجتياز اختبار TCP50 مباشرة بتجربة Premium واضحة وسريعة.</p>
+        <span class="fa-kicker">FUNX.AI · Funded Accounts Platform</span>
+        <h1>ابدأ رحلتك نحو أول حساب ممول احترافي</h1>
+        <p>منصة FUNX.AI توفر حلولاً احترافية للحصول على حسابات ممولة، مع متابعة وإدارة رأس المال وفق خطة منظمة.</p>
         <div class="fa-hero-actions">
-          <a href="#store" class="fa-primary">اختر الخدمة الآن</a>
-          <a href="https://t.me/TrBridgoSupport" target="_blank" rel="noopener" class="fa-secondary">تواصل سريع</a>
+          <a href="#product-free" class="fa-primary" data-select-service="free">🎁 احصل على حساب مجاني</a>
+          <a href="#product-paid" class="fa-secondary fa-gold-action" data-select-service="paid">💎 شراء خدمة اجتياز الاختبار</a>
         </div>
       </div>
-
       <div class="fa-hero-visual fa-reveal">
         <canvas id="faThreeCard" aria-label="مجسم ثلاثي الأبعاد لحساب ممول 50K"></canvas>
         <div class="fa-funded-card">
-          <img src="assets/images/free-account-poster.jpg" alt="متجر الحسابات الممولة TCP50">
+          <img src="assets/images/free-account-poster.jpg" alt="حساب ممول 50K يطفو في الهواء" loading="lazy">
         </div>
-        <div class="fa-float-chip fa-chip-top">TCP50 Store</div>
-        <div class="fa-float-chip fa-chip-bottom">Free / Paid</div>
+        <div class="fa-float-chip fa-chip-top">50K USD</div>
+        <div class="fa-float-chip fa-chip-bottom">Capital Management</div>
       </div>
     </section>
 
-    <section class="fa-section fa-store" id="store">
+    <section class="fa-section fa-global-stats" id="global-stats">
+      <div class="fa-stat fa-reveal"><strong data-count="2500">0</strong><span>عدد العملاء</span></div>
+      <div class="fa-stat fa-reveal"><strong data-count="250">0</strong><span>عدد الحسابات</span></div>
+      <div class="fa-stat fa-reveal"><strong data-count="12500000" data-prefix="$">0</strong><span>إجمالي رؤوس الأموال</span></div>
+      <div class="fa-stat fa-reveal"><strong data-count="18">0</strong><span>عدد الدول</span></div>
+      <div class="fa-stat fa-reveal"><strong data-count="96" data-suffix="%">0%</strong><span>معدل رضا العملاء</span></div>
+      <div class="fa-stat fa-reveal"><strong data-count="510">0</strong><span>إجمالي الحسابات التي تمت متابعتها</span></div>
+    </section>
+
+    <section class="fa-section" id="compare">
+      <div class="fa-section-head fa-reveal">
+        <span>COMPARE</span>
+        <h2>مقارنة الخدمات</h2>
+        <p>اختر المسار المناسب لك. كل بطاقة تتحول عند الضغط إلى تجربة منتج كاملة.</p>
+      </div>
+      <div class="fa-comparison-grid">
+        <article class="fa-compare-card fa-reveal" data-fullscreen-card data-select-service="free">
+          <span>🎁</span>
+          <h3>الحساب المجاني</h3>
+          <ul>
+            <li>مناسب لمن يريد اتباع شروط الدعوة.</li>
+            <li>تسجيل على مراحل مع رقم طلب.</li>
+            <li>تعليمات Telegram وRise بعد إرسال الطلب.</li>
+            <li>متابعة الطلب من داخل الصفحة.</li>
+          </ul>
+          <a href="free-account-product-free.html">عرض صفحة المنتج</a>
+        </article>
+        <article class="fa-compare-card fa-reveal" data-fullscreen-card data-select-service="paid">
+          <span>💎</span>
+          <h3>شراء خدمة اجتياز الاختبار</h3>
+          <ul>
+            <li>مسار مباشر بعد شراء حساب TCP50.</li>
+            <li>جدول رسوم واضح على مرحلتين.</li>
+            <li>تواصل Telegram لإرسال بيانات المنصة.</li>
+            <li>ضم إلى VIP بعد اكتمال الخدمة.</li>
+          </ul>
+          <a href="free-account-product-paid.html">عرض صفحة المنتج</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="fa-section" id="products">
       <div class="fa-section-head fa-reveal">
         <span>STORE</span>
-        <h2>اختر نوع الخدمة</h2>
-        <p>بطاقتان كبيرتان. عند اختيار خدمة، تتحول الصفحة إلى تفاصيلها ويمكنك إضافتها للسلة ثم المتابعة.</p>
+        <h2>متجر الحسابات الممولة</h2>
+        <p>Cards زجاجية بتفاعل يشبه متجر Apple، قابلة للتوسع لإضافة شركات ومنتجات جديدة مستقبلاً.</p>
       </div>
-
-      <div class="fa-service-picker">
-        <button class="fa-service-card fa-reveal is-active" type="button" data-service-select="free">
+      <div class="fa-apple-store">
+        <article class="fa-apple-card fa-reveal" data-select-service="free">
+          <div class="fa-card-shine"></div>
           <span class="fa-service-icon">🎁</span>
-          <strong>الحساب المجاني</strong>
-          <small>شروط واضحة، تسجيل خارجي، ثم متابعة عبر Telegram وRise.</small>
-        </button>
-        <button class="fa-service-card fa-reveal" type="button" data-service-select="paid">
+          <h3>الحساب المجاني</h3>
+          <p>رحلة منظمة للحصول على حساب ممول مجاني لأول المؤهلين.</p>
+          <div class="fa-card-price">0$</div>
+          <div class="fa-card-actions">
+            <a href="free-account-product-free.html">التفاصيل</a>
+            <button type="button" data-add-cart="free">إضافة للسلة</button>
+          </div>
+        </article>
+        <article class="fa-apple-card fa-reveal" data-select-service="paid">
+          <div class="fa-card-shine"></div>
           <span class="fa-service-icon">💎</span>
-          <strong>خدمة اجتياز الاختبار</strong>
-          <small>خدمة مباشرة لاجتياز اختبار TCP50 بعد شراء الحساب من Earn2Trade.</small>
-        </button>
+          <h3>خدمة اجتياز TCP50</h3>
+          <p>خدمة احترافية منظمة لاجتياز الاختبار وفق قواعد الشركة.</p>
+          <div class="fa-card-price">67$</div>
+          <div class="fa-card-actions">
+            <a href="free-account-product-paid.html">التفاصيل</a>
+            <button type="button" data-add-cart="paid">إضافة للسلة</button>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="fa-section fa-cart-panel fa-reveal" id="cart">
-      <div>
-        <span class="fa-cart-label">السلة</span>
-        <h2 id="cartTitle">🎁 الحساب المجاني</h2>
-        <p id="cartDesc">الخدمة المختارة جاهزة للإضافة والمتابعة.</p>
+    <section class="fa-product-page" id="product-free" data-product-page="free">
+      <div class="fa-product-hero fa-reveal">
+        <img src="assets/images/free-account-overview.jpg" alt="تفاصيل الحساب المجاني TCP50" loading="lazy">
+        <div>
+          <span>FREE ACCOUNT</span>
+          <h2>🎁 الحساب المجاني</h2>
+          <p>تسجيل متعدد المراحل، رقم طلب، وتعليمات واضحة للانضمام إلى Telegram وفتح Rise ومتابعة الطلب.</p>
+          <button type="button" data-add-cart="free">إضافة الحساب المجاني للسلة</button>
+        </div>
       </div>
-      <div class="fa-cart-actions">
-        <button type="button" class="fa-cart-add" id="addToCartBtn">إضافة إلى السلة</button>
-        <button type="button" class="fa-cart-next" id="cartNextBtn">متابعة</button>
-      </div>
-    </section>
 
-    <div id="service-details">
-      <section class="fa-service-panel is-active" data-service-panel="free">
-        <section class="fa-section">
-          <div class="fa-section-head fa-reveal">
-            <span>FREE</span>
-            <h2>🎁 الحصول على حساب مجاني</h2>
-            <p>اتبع خطوات اختيار حساب TCP50 بدقة، ثم أكمل نموذج التسجيل الخارجي.</p>
-          </div>
-
-          <div class="fa-shop-timeline">
-            <article class="fa-shop-step fa-reveal">
-              <span>1</span>
-              <h3>أنشئ حساباً في Earn2Trade.</h3>
-            </article>
-            <article class="fa-shop-step fa-reveal">
-              <span>2</span>
-              <h3>اختر Trader Career Path</h3>
-              <p>هذا هو برنامج النمو الذي يسمح بتطوير الحساب تدريجياً حتى أحجام أكبر وفق قواعد الشركة.</p>
-            </article>
-            <article class="fa-shop-step fa-reveal">
-              <span>3</span>
-              <h3>اختر TCP50</h3>
-              <p>ولا تختر أي حساب آخر.</p>
-            </article>
-            <article class="fa-shop-step fa-reveal">
-              <span>4</span>
-              <h3>اختر LiveSim</h3>
-              <p>يُفضل اختيار LiveSim لأنه لا يتطلب دفع رسوم شهرية منفصلة بعد النجاح مثل بعض الخيارات الأخرى وفق سياسات الشركة الحالية.</p>
-            </article>
-            <article class="fa-shop-step fa-reveal">
-              <span>5</span>
-              <h3>اختر منصة NinjaTrader أو Tradovate / TradingView</h3>
-              <p>ولا تختر أي منصة أخرى إذا كانت خطتنا مبنية على هاتين المنصتين.</p>
-            </article>
-          </div>
+      <div class="fa-product-grid">
+        <section class="fa-product-card fa-reveal">
+          <h3>Timeline احترافي</h3>
+          <details open><summary>1. أنشئ حساباً في Earn2Trade</summary><p>ابدأ من الموقع الرسمي ثم انتقل لاختيار برنامج الحساب.</p></details>
+          <details><summary>2. اختر Trader Career Path</summary><p>هذا هو برنامج النمو الذي يسمح بتطوير الحساب تدريجياً حتى أحجام أكبر وفق قواعد الشركة.</p></details>
+          <details><summary>3. اختر TCP50</summary><p>لا تختر أي حساب آخر لأن الخطة مبنية على TCP50.</p></details>
+          <details><summary>4. اختر LiveSim</summary><p>يُفضل اختيار LiveSim لأنه لا يتطلب دفع رسوم شهرية منفصلة بعد النجاح مثل بعض الخيارات الأخرى وفق سياسات الشركة الحالية.</p></details>
+          <details><summary>5. اختر NinjaTrader أو Tradovate / TradingView</summary><p>لا تختر أي منصة أخرى إذا كانت خطتنا مبنية على هاتين المنصتين.</p></details>
         </section>
 
-        <section class="fa-section fa-form-shell" id="free-form">
-          <div class="fa-form-card fa-reveal">
-            <span>بعد شراء الحساب</span>
-            <h2>اضغط على: تم شراء الحساب.</h2>
-            <p>بعدها يظهر نموذج التسجيل الخارجي بدون تسجيل دخول.</p>
-            <button type="button" class="fa-primary fa-buy-confirm" data-show-form="free">تم شراء الحساب</button>
+        <section class="fa-product-card fa-reveal">
+          <h3>مستوى التقدم</h3>
+          <div class="fa-progress-3d" data-progress-bar>
+            <span style="--p:0%">0%</span>
+            <span style="--p:25%">25%</span>
+            <span style="--p:50%">50%</span>
+            <span style="--p:75%">75%</span>
+            <span style="--p:100%">100%</span>
           </div>
+        </section>
+      </div>
 
-          <form class="fa-lead-form fa-reveal" data-order-form="free" hidden>
-            <h3>نموذج التسجيل</h3>
+      <section class="fa-section fa-free-wizard" id="free-registration">
+        <div class="fa-section-head fa-reveal">
+          <span>REGISTER</span>
+          <h2>تسجيل الحساب المجاني على مراحل</h2>
+        </div>
+        <div class="fa-wizard fa-reveal" data-free-wizard>
+          <div class="fa-wizard-steps">
+            <button type="button" class="is-active">Step 1<br>البيانات الشخصية</button>
+            <button type="button">Step 2<br>مراجعة البيانات</button>
+            <button type="button">Step 3<br>تم استلام الطلب</button>
+            <button type="button">Step 4<br>تعليمات Telegram</button>
+            <button type="button">Step 5<br>متابعة الطلب</button>
+          </div>
+          <form class="fa-lead-form fa-wizard-panel is-active" data-order-form="free">
+            <h3>البيانات الشخصية</h3>
             <label>الاسم الكامل<input name="name" type="text" required></label>
             <label>البريد الإلكتروني<input name="email" type="email" required></label>
             <label>رقم واتساب<input name="whatsapp" type="tel" required></label>
             <label>الدولة<input name="country" type="text" required></label>
             <button type="submit">التالي</button>
           </form>
-
-          <div class="fa-success-box fa-reveal" data-success="free" hidden>
-            <span>مبروك.</span>
+          <div class="fa-success-box fa-wizard-panel" data-success="free">
+            <span>Success</span>
             <h2>تم استلام طلبك بنجاح.</h2>
-            <p>وسيتم التواصل معك قريباً.</p>
+            <p>رقم الطلب: <strong data-free-order-id>FUNX-0000</strong></p>
             <div class="fa-next-steps">
               <div>انضم إلى مجموعة Telegram العامة: <a href="https://t.me/TrBridgoSupport" target="_blank" rel="noopener">https://t.me/TrBridgoSupport</a></div>
               <div>قم بدعوة 5 أشخاص.</div>
@@ -150,95 +215,107 @@
               <div>بعد مراجعة البيانات سيتم التواصل معك بشأن الخطوات التالية.</div>
             </div>
           </div>
-        </section>
-      </section>
-
-      <section class="fa-service-panel" data-service-panel="paid">
-        <section class="fa-section fa-paid-section" id="paid-account">
-          <div class="fa-paid-bg" aria-hidden="true"></div>
-          <div class="fa-paid-hero fa-reveal">
-            <span class="fa-paid-label">💎 شراء خدمة اجتياز الاختبار</span>
-            <div class="fa-paid-title">
-              <h2>شراء خدمة اجتياز اختبار TCP50</h2>
-              <p>خدمة مباشرة لمن اشترى حساب TCP50 ويريد العمل على اجتياز الاختبار وفق خطة منضبطة.</p>
+          <div class="fa-order-tracker fa-wizard-panel" data-order-tracker>
+            <h3>متابعة الطلب</h3>
+            <div class="fa-status-rail">
+              <span class="is-done">تم الاستلام</span>
+              <span>قيد المراجعة</span>
+              <span>بانتظار التواصل</span>
+              <span>تم التواصل</span>
+              <span>مكتمل</span>
             </div>
-            <a href="https://t.me/TrBridgoSupport" target="_blank" rel="noopener" class="fa-paid-cta">تواصل معنا على Telegram</a>
           </div>
-
-          <div class="fa-paid-layout">
-            <div class="fa-paid-main">
-              <div class="fa-section-head fa-reveal">
-                <span>STEPS</span>
-                <h2>الخطوات</h2>
-              </div>
-              <div class="fa-paid-cards">
-                <article class="fa-paid-card fa-reveal"><span>01</span><div class="fa-paid-icon">E</div><p>قم بشراء الحساب من Earn2Trade.</p></article>
-                <article class="fa-paid-card fa-reveal"><span>02</span><div class="fa-paid-icon">T</div><p>اختر Trader Career Path.</p></article>
-                <article class="fa-paid-card fa-reveal"><span>03</span><div class="fa-paid-icon">50</div><p>ثم TCP50.</p></article>
-                <article class="fa-paid-card fa-reveal"><span>04</span><div class="fa-paid-icon">L</div><p>ثم LiveSim.</p></article>
-                <article class="fa-paid-card fa-reveal fa-paid-card-wide"><span>05</span><div class="fa-paid-icon">N</div><p>ثم NinjaTrader أو Tradovate / TradingView.</p></article>
-              </div>
-            </div>
-
-            <aside class="fa-paid-fees fa-reveal">
-              <span>جدول الرسوم</span>
-              <h3>67$</h3>
-              <p>قيمة الخدمة على مرحلتين</p>
-              <div class="fa-payment-row"><strong>33$</strong><span>الدفعة الأولى قبل بدء العمل.</span></div>
-              <div class="fa-payment-row"><strong>34$</strong><span>الدفعة الثانية بعد اكتمال الخدمة.</span></div>
-            </aside>
-          </div>
-
-          <div class="fa-section-head fa-reveal">
-            <span>LOGIN</span>
-            <h2>بعد شراء الحساب</h2>
-            <p>قم بإرسال بيانات الدخول الخاصة بمنصة Tradovate أو NinjaTrader عبر Telegram فقط.</p>
-          </div>
-
-          <div class="fa-paid-alert fa-reveal">
-            <strong>تنبيه مهم</strong>
-            <p>هذه الخدمة تعتمد على الالتزام بقواعد Earn2Trade وإدارة المخاطر وظروف السوق. لا يتم تقديم وعود مضللة أو ضمانات مطلقة، ويتم العمل وفق خطة تداول منضبطة لتقليل المخاطر واحترام قواعد الحساب.</p>
-          </div>
-
-          <form class="fa-lead-form fa-reveal" data-order-form="paid">
-            <h3>طلب خدمة اجتياز الاختبار</h3>
-            <label>الاسم الكامل<input name="name" type="text" required></label>
-            <label>البريد الإلكتروني<input name="email" type="email" required></label>
-            <label>رقم واتساب<input name="whatsapp" type="tel" required></label>
-            <label>الدولة<input name="country" type="text" required></label>
-            <button type="submit">إرسال الطلب</button>
-          </form>
-
-          <div class="fa-success-box fa-reveal" data-success="paid" hidden>
-            <span>تم استلام طلبك.</span>
-            <h2>سنتواصل معك بخصوص خدمة اجتياز اختبار TCP50.</h2>
-            <p>يمكنك أيضاً التواصل مباشرة عبر Telegram لإرسال بيانات المنصة بشكل خاص.</p>
-            <a href="https://t.me/TrBridgoSupport" target="_blank" rel="noopener">💬 تواصل معنا على Telegram</a>
-          </div>
-        </section>
+        </div>
       </section>
-    </div>
+    </section>
+
+    <section class="fa-product-page" id="product-paid" data-product-page="paid">
+      <div class="fa-product-hero fa-reveal">
+        <img src="assets/images/free-account-poster.jpg" alt="شراء خدمة اجتياز اختبار TCP50" loading="lazy">
+        <div>
+          <span>PAID SERVICE</span>
+          <h2>💎 شراء خدمة اجتياز اختبار TCP50</h2>
+          <p>صفحة منتج كاملة للخطوات، الشروط، جدول الرسوم، FAQ، والتواصل المباشر.</p>
+          <button type="button" data-add-cart="paid">إضافة الخدمة للسلة</button>
+        </div>
+      </div>
+
+      <div class="fa-product-grid">
+        <section class="fa-product-card fa-reveal">
+          <h3>Timeline العملية</h3>
+          <details open><summary>شراء الحساب</summary><p>قم بشراء الحساب من Earn2Trade واختر Trader Career Path ثم TCP50 ثم LiveSim.</p></details>
+          <details><summary>اختيار المنصة</summary><p>اختر NinjaTrader أو Tradovate / TradingView فقط.</p></details>
+          <details><summary>إرسال بيانات المنصة</summary><p>بعد شراء الحساب قم بإرسال بيانات الدخول الخاصة بمنصة Tradovate أو NinjaTrader عبر Telegram.</p></details>
+          <details><summary>المراجعة والبدء</summary><p>نراجع الحساب والقواعد قبل البدء، ثم يتم العمل وفق خطة منظمة.</p></details>
+          <details><summary>VIP</summary><p>بعد اكتمال الخدمة يتم ضمك إلى VIP لمتابعة الصفقات وإدارة رأس المال.</p></details>
+        </section>
+        <aside class="fa-paid-fees fa-reveal">
+          <span>جدول الرسوم</span>
+          <h3>67$</h3>
+          <p>قيمة الخدمة على مرحلتين</p>
+          <div class="fa-payment-row"><strong>33$</strong><span>الدفعة الأولى قبل بدء العمل.</span></div>
+          <div class="fa-payment-row"><strong>34$</strong><span>الدفعة الثانية بعد اكتمال الخدمة.</span></div>
+          <a href="https://t.me/TrBridgoSupport" target="_blank" rel="noopener" class="fa-paid-cta">تواصل معنا على Telegram</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="fa-section" id="accounts">
+      <div class="fa-section-head fa-reveal">
+        <span>ACCOUNTS</span>
+        <h2>مقارنة الحسابات</h2>
+      </div>
+      <div class="fa-account-table fa-reveal">
+        <div class="is-active"><strong>TCP50</strong><span>متاح الآن</span><b>50,000$</b></div>
+        <div><strong>TCP100</strong><span>Coming Soon</span><b>100,000$</b></div>
+        <div><strong>TCP150</strong><span>Coming Soon</span><b>150,000$</b></div>
+      </div>
+    </section>
+
+    <section class="fa-section fa-checkout" id="checkout">
+      <div class="fa-section-head fa-reveal">
+        <span>CHECKOUT</span>
+        <h2>Checkout</h2>
+        <p>صفحة مستقلة داخل المنصة تعرض الخدمة والسعر والملخص وزر التواصل.</p>
+      </div>
+      <div class="fa-checkout-card fa-reveal">
+        <div>
+          <span>الخدمة</span>
+          <h3 data-checkout-service>لم يتم اختيار خدمة بعد</h3>
+          <p data-checkout-summary>أضف خدمة إلى السلة ثم اضغط متابعة.</p>
+        </div>
+        <strong data-checkout-price>0$</strong>
+        <a href="https://t.me/TrBridgoSupport" target="_blank" rel="noopener">تواصل لإكمال الطلب</a>
+      </div>
+    </section>
 
     <section class="fa-section" id="faq">
       <div class="fa-section-head fa-reveal">
         <span>FAQ</span>
         <h2>الأسئلة الشائعة</h2>
       </div>
-      <div class="fa-faq fa-reveal">
-        <details open>
-          <summary>هل أحتاج إلى تسجيل دخول داخل الموقع؟</summary>
-          <p>لا، النموذج خارجي وبسيط ولا يتطلب تسجيل دخول.</p>
-        </details>
-        <details>
-          <summary>أين يتم حفظ الطلبات؟</summary>
-          <p>في النسخة الحالية Static يتم حفظ الطلبات محلياً داخل متصفح الإدارة عبر localStorage.</p>
-        </details>
-        <details>
-          <summary>هل أرسل بيانات منصة التداول داخل النموذج؟</summary>
-          <p>لا. يتم إرسال بيانات Tradovate أو NinjaTrader عبر Telegram فقط.</p>
-        </details>
+      <div class="fa-faq fa-faq-3d fa-reveal">
+        <details open><summary>هل هذه منصة دفع إلكتروني؟</summary><p>حالياً المنصة Frontend فقط، ويتم إكمال الدفع والتواصل عبر Telegram.</p></details>
+        <details><summary>هل يمكن إضافة شركات حسابات أخرى؟</summary><p>نعم، بنية الخدمات في JavaScript جاهزة لإضافة شركات ومنتجات رقمية مستقبلاً.</p></details>
+        <details><summary>هل توجد ضمانات مطلقة؟</summary><p>لا، يتم العمل وفق خطة تداول منضبطة واحترام قواعد الحساب وظروف السوق.</p></details>
+        <details><summary>أين يتم حفظ الطلبات؟</summary><p>في النسخة الحالية يتم حفظ الطلبات محلياً في المتصفح عبر localStorage دون Backend.</p></details>
       </div>
     </section>
+
+    <footer class="fa-mega-footer">
+      <div>
+        <span>FUNX.AI</span>
+        <h2>منصة FinTech متخصصة في الحسابات الممولة</h2>
+        <p>تجربة Premium، مسارات واضحة، متابعة منظمة، وتصميم قابل للتوسع نحو بوابات الدفع والاشتراكات والكوبونات وبرامج الإحالة.</p>
+      </div>
+      <div class="fa-social-grid">
+        <a href="https://t.me/TrBridgoSupport" target="_blank" rel="noopener">Telegram</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="X">X</a>
+        <a href="#" aria-label="WhatsApp">WhatsApp</a>
+      </div>
+    </footer>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/motion@12.23.24/dist/motion.js"></script>
