@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>لوحة الإدارة — FUNX.AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/funx-admin.css">
+</head>
+<body class="fa-admin-body">
+  <div class="fa-bg" aria-hidden="true"></div>
+
+  <div class="fa-admin-dashboard" data-fa-admin-dashboard>
+
+    <!-- ═══ Top Bar ═══ -->
+    <header class="fa-admin-topbar" data-fa-admin-topbar>
+      <h1>FUNX<span>.AI</span> — لوحة الإدارة</h1>
+      <div class="fa-admin-topbar-actions">
+        <button type="button" class="fa-admin-btn fa-admin-btn-gold" data-fa-admin-add-product>➕ إضافة منتج</button>
+        <button type="button" class="fa-admin-btn" data-fa-admin-logout>تسجيل الخروج</button>
+      </div>
+    </header>
+
+    <!-- ═══ Stats Grid ═══ -->
+    <div class="fa-admin-stats" data-fa-admin-stats>
+      <div class="fa-admin-stat">
+        <div class="fa-admin-stat-label">إجمالي الطلبات</div>
+        <div class="fa-admin-stat-value gold" data-fa-stat="total-all">0</div>
+      </div>
+      <div class="fa-admin-stat">
+        <div class="fa-admin-stat-label">حسابات مجانية</div>
+        <div class="fa-admin-stat-value blue" data-fa-stat="total-free">0</div>
+      </div>
+      <div class="fa-admin-stat">
+        <div class="fa-admin-stat-label">خدمات مدفوعة</div>
+        <div class="fa-admin-stat-value warn" data-fa-stat="total-paid">0</div>
+      </div>
+      <div class="fa-admin-stat">
+        <div class="fa-admin-stat-label">قيد الانتظار</div>
+        <div class="fa-admin-stat-value red" data-fa-stat="pending">0</div>
+      </div>
+      <div class="fa-admin-stat">
+        <div class="fa-admin-stat-label">تم الإنجاز</div>
+        <div class="fa-admin-stat-value green" data-fa-stat="completed">0</div>
+      </div>
+    </div>
+
+    <!-- ═══ Notifications Bar ═══ -->
+    <div class="fa-admin-notif-bar" data-fa-admin-notif-bar>
+      <span class="fa-admin-notif-dot"></span>
+      <span class="fa-admin-notif-text" data-fa-notif-count>0</span>
+      <span>إشعار جديد</span>
+      <button type="button" class="fa-admin-notif-close" data-fa-notif-close>&times;</button>
+    </div>
+
+    <!-- ═══ Tabs ═══ -->
+    <div class="fa-admin-tabs" data-fa-admin-tabs>
+      <button type="button" class="fa-admin-tab is-active" data-fa-admin-tab="orders">📋 الطلبات</button>
+      <button type="button" class="fa-admin-tab" data-fa-admin-tab="products">🛍️ المنتجات</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION: Orders
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="fa-admin-section is-visible" data-fa-admin-section="orders">
+
+      <!-- Filters -->
+      <div class="fa-admin-filters" data-fa-admin-filters>
+        <button type="button" class="fa-admin-btn is-active" data-fa-admin-filter="free">🔹 الحساب المجاني</button>
+        <button type="button" class="fa-admin-btn" data-fa-admin-filter="paid">💎 الخدمات المدفوعة</button>
+        <input type="text" placeholder="🔍 بحث في الطلبات..." data-fa-admin-search>
+      </div>
+
+      <!-- Export Bar -->
+      <div class="fa-admin-export-bar">
+        <button type="button" class="fa-admin-btn" data-fa-admin-export="csv">📥 تصدير CSV</button>
+        <button type="button" class="fa-admin-btn" data-fa-admin-export="json">📥 تصدير JSON</button>
+      </div>
+
+      <!-- Table -->
+      <div class="fa-admin-table-wrap" data-fa-admin-table-wrap>
+        <table class="fa-admin-table">
+          <thead>
+            <tr>
+              <th>الاسم</th>
+              <th>البريد الإلكتروني</th>
+              <th>واتساب / تيليجرام</th>
+              <th>الدولة</th>
+              <th>تاريخ الإرسال</th>
+              <th>الحالة</th>
+              <th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="fa-admin-empty" data-fa-admin-empty>لا توجد طلبات لعرضها.</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION: Products
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="fa-admin-section" data-fa-admin-section="products">
+      <div class="fa-admin-products-grid" data-fa-admin-products-grid></div>
+    </div>
+
+  </div><!-- /dashboard -->
+
+  <!-- ═══════════════════════════════════════════════════════════
+       MODAL: Order Detail
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="fa-admin-modal-overlay" data-fa-admin-modal-overlay>
+    <div class="fa-admin-modal" data-fa-admin-modal>
+      <button type="button" class="fa-admin-modal-close" data-fa-modal-close>&times;</button>
+      <h2>تفاصيل الطلب <span data-fa-modal-id></span></h2>
+
+      <div class="fa-admin-modal-grid">
+        <div class="fa-admin-modal-field">
+          <label>الاسم</label>
+          <div data-fa-modal-name></div>
+        </div>
+        <div class="fa-admin-modal-field">
+          <label>البريد الإلكتروني</label>
+          <div data-fa-modal-email></div>
+        </div>
+        <div class="fa-admin-modal-field">
+          <label>واتساب / تيليجرام</label>
+          <div>
+            <a data-fa-modal-whatsapp class="fa-admin-modal-whatsapp" target="_blank" rel="noopener"></a>
+            <span> | </span>
+            <a data-fa-modal-telegram class="fa-admin-modal-telegram" target="_blank" rel="noopener">Telegram</a>
+          </div>
+        </div>
+        <div class="fa-admin-modal-field">
+          <label>الدولة</label>
+          <div data-fa-modal-country></div>
+        </div>
+        <div class="fa-admin-modal-field">
+          <label>تاريخ الإرسال</label>
+          <div data-fa-modal-date></div>
+        </div>
+        <div class="fa-admin-modal-field full">
+          <label>حالة الطلب</label>
+          <select class="fa-admin-status-select" data-fa-modal-status></select>
+        </div>
+      </div>
+
+      <div class="fa-admin-modal-section">
+        <h3>📋 سجل الحركات</h3>
+        <div class="fa-admin-modal-history" data-fa-modal-history></div>
+      </div>
+
+      <div class="fa-admin-modal-section">
+        <h3>📝 ملاحظات</h3>
+        <textarea data-fa-modal-notes placeholder="أضف ملاحظات حول هذا الطلب..."></textarea>
+      </div>
+
+      <div class="fa-admin-modal-actions">
+        <button type="button" class="fa-admin-btn fa-admin-btn-danger" data-fa-modal-cancel>إغلاق</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       MODAL: Product Edit
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="fa-admin-modal-overlay" data-fa-admin-product-modal-overlay>
+    <div class="fa-admin-modal" data-fa-admin-product-modal>
+      <button type="button" class="fa-admin-modal-close" data-fa-product-cancel>&times;</button>
+      <h2>تعديل المنتج</h2>
+
+      <form class="fa-admin-product-form" data-fa-admin-product-form>
+        <label>
+          اسم المنتج
+          <input name="name" type="text" required>
+        </label>
+        <label>
+          السعر ($)
+          <input name="price" type="number" step="0.01" min="0" required>
+        </label>
+        <label>
+          التصنيف
+          <select name="category">
+            <option value="حسابات مجانية">حسابات مجانية</option>
+            <option value="خدمات مدفوعة">خدمات مدفوعة</option>
+            <option value="خدمات">خدمات</option>
+          </select>
+        </label>
+        <label>
+          ملخص قصير
+          <input name="summary" type="text" required>
+        </label>
+        <label>
+          وصف كامل
+          <textarea name="description"></textarea>
+        </label>
+        <label style="flex-direction:row;align-items:center;gap:10px;">
+          <input name="enabled" type="checkbox" checked>
+          <span>المنتج مفعّل</span>
+        </label>
+
+        <div class="fa-admin-form-actions">
+          <button type="submit" class="save-btn">💾 حفظ التغييرات</button>
+          <button type="button" class="cancel-btn" data-fa-product-cancel>إلغاء</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/funx-store.js"></script>
+</body>
+</html>

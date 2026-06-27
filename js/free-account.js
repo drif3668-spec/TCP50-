@@ -239,7 +239,7 @@ function renderCart() {
     const password = String(data.get('password') || '').trim();
     if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
       sessionStorage.setItem(ADMIN_SESSION_KEY, 'active');
-      window.location.href = 'free-account-admin.html';
+      window.location.href = 'funx-admin.html';
       return;
     }
     window.alert('بيانات الدخول غير صحيحة.');
