@@ -1620,6 +1620,110 @@ main { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
   backdrop-filter: blur(14px);
   font-weight: 900;
 }
+.fa-admin-entry {
+  width: min(1180px, calc(100% - 32px));
+  margin: -38px auto 34px;
+  display: flex;
+  justify-content: center;
+}
+.fa-admin-entry a {
+  min-height: 30px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: rgba(17,17,17,.52);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 999px;
+  background: rgba(255,255,255,.52);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.fa-admin-entry a:hover {
+  color: #111;
+  border-color: rgba(247,201,72,.42);
+  background: rgba(255,255,255,.78);
+}
+.fa-admin-login-main {
+  width: min(520px, calc(100% - 32px));
+  min-height: 100svh;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  padding: 36px 0;
+}
+.fa-admin-login-card {
+  width: 100%;
+  display: grid;
+  gap: 14px;
+  padding: 30px;
+  border: 1px solid rgba(255,255,255,.76);
+  border-radius: 30px;
+  background: rgba(255,255,255,.72);
+  box-shadow: var(--fa-shadow);
+  backdrop-filter: blur(24px);
+}
+.fa-admin-login-card > span {
+  color: var(--fa-gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 900;
+}
+.fa-admin-login-card h1 {
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(28px, 6vw, 46px);
+  line-height: 1.1;
+}
+.fa-admin-login-card p,
+.fa-admin-login-hint {
+  color: #555;
+  font-weight: 700;
+}
+.fa-admin-login-card label {
+  display: grid;
+  gap: 7px;
+  font-weight: 900;
+}
+.fa-admin-login-card input {
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  background: rgba(255,255,255,.82);
+  font: inherit;
+}
+.fa-admin-login-card button,
+.fa-admin-logout {
+  min-height: 46px;
+  padding: 0 18px;
+  cursor: pointer;
+  color: #111;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff2ac, #f2bd1a 50%, #fff6c9);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900;
+}
+.fa-admin-login-hint {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(247,201,72,.12);
+}
+.fa-admin-login-hint span {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.fa-admin-logout {
+  margin-top: 14px;
+}
 .fa-confetti {
   position: fixed;
   inset: 0;

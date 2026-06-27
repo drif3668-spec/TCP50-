@@ -1,6 +1,9 @@
 'use strict';
 
 const TCP50_DB_KEY = 'tcp50StoreOrders';
+const ADMIN_EMAIL = 'funx.admin.427@gmail.com';
+const ADMIN_PASSWORD = 'FUNX-ADMIN';
+const ADMIN_SESSION_KEY = 'tcp50AdminSession';
 const ORDER_STATUSES = ['تم الاستلام', 'جديد', 'قيد المراجعة', 'بانتظار التواصل', 'تم التواصل', 'مكتمل'];
 const SERVICES = {
   free: {
@@ -226,6 +229,23 @@ function renderCart() {
   });
 })();
 
+(function initAdminLogin() {
+  const form = document.querySelector('[data-admin-login-form]');
+  if (!form) return;
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const email = String(data.get('email') || '').trim().toLowerCase();
+    const password = String(data.get('password') || '').trim();
+    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+      sessionStorage.setItem(ADMIN_SESSION_KEY, 'active');
+      window.location.href = 'free-account-admin.html';
+      return;
+    }
+    window.alert('بيانات الدخول غير صحيحة.');
+  });
+})();
+
 (function initForms() {
   document.querySelectorAll('[data-order-form]').forEach((form) => {
     form.addEventListener('submit', (event) => {
@@ -369,6 +389,14 @@ function launchConfetti() {
   const empty = document.getElementById('adminEmpty');
   const tabs = document.querySelectorAll('[data-admin-filter]');
   if (!body || !tabs.length) return;
+  if (sessionStorage.getItem(ADMIN_SESSION_KEY) !== 'active') {
+    window.location.href = 'free-account-admin-login.html';
+    return;
+  }
+  document.querySelector('[data-admin-logout]')?.addEventListener('click', () => {
+    sessionStorage.removeItem(ADMIN_SESSION_KEY);
+    window.location.href = 'free-account-admin-login.html';
+  });
   let filter = 'free';
   function render() {
     const orders = getOrders().filter((order) => order.type === filter);
