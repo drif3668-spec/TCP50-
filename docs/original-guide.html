@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل خطة TCP50 — Earn2Trade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0F1C;
+    --ink-2:#0d1322;
+    --surface:#131B2C;
+    --surface-2:#18213500;
+    --card:#141D30;
+    --line:rgba(255,255,255,.07);
+    --line-2:rgba(255,255,255,.12);
+    --emerald:#33E5A1;
+    --emerald-dim:rgba(51,229,161,.12);
+    --crimson:#FF5C72;
+    --crimson-dim:rgba(255,92,114,.12);
+    --amber:#F4C44E;
+    --amber-dim:rgba(244,196,78,.12);
+    --text:#EAF0FA;
+    --muted:#8B96AB;
+    --muted-2:#5e6a80;
+    --mono:'JetBrains Mono',monospace;
+    --r:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(51,229,161,.07), transparent 60%),
+      radial-gradient(1000px 500px at 0% 0%, rgba(244,196,78,.05), transparent 55%),
+      var(--ink);
+    color:var(--text);
+    font-family:'IBM Plex Sans Arabic',sans-serif;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    padding:0 0 80px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  .num{font-family:var(--mono);font-feature-settings:"tnum";direction:ltr;unicode-bidi:isolate;display:inline-block}
+  .g{color:var(--emerald)} .r{color:var(--crimson)} .a{color:var(--amber)} .m{color:var(--muted)}
+
+  /* ===== HEADER ===== */
+  header{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#0c1322,transparent)}
+  .hero{max-width:1080px;margin:0 auto;padding:54px 22px 46px;position:relative;z-index:2}
+  .brandrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+  .brand{font-family:'Cairo';font-weight:900;letter-spacing:.5px;font-size:18px}
+  .brand b{color:var(--emerald)}
+  .pill{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:1px;
+    padding:6px 12px;border-radius:99px;background:var(--amber-dim);color:var(--amber);
+    border:1px solid rgba(244,196,78,.35)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:3px;color:var(--emerald);margin-bottom:14px}
+  h1{font-family:'Cairo';font-weight:900;font-size:clamp(34px,6vw,60px);line-height:1.15;letter-spacing:-.5px}
+  h1 .x{color:var(--emerald)}
+  .sub{color:var(--muted);font-size:clamp(15px,2.4vw,19px);max-width:680px;margin-top:18px}
+  .hero-glow{position:absolute;inset:0;z-index:1;
+    background:radial-gradient(600px 300px at 90% 30%,rgba(51,229,161,.10),transparent 70%)}
+
+  /* ===== SPEC BAND ===== */
+  .specs{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;margin-top:40px;
+    background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .spec{background:var(--ink-2);padding:20px 16px;text-align:center}
+  .spec .lab{font-size:12.5px;color:var(--muted);margin-bottom:8px;min-height:34px;display:flex;align-items:center;justify-content:center;line-height:1.4}
+  .spec .val{font-family:var(--mono);font-weight:800;font-size:22px;line-height:1}
+  .spec.go .val{color:var(--emerald)} .spec.bad .val{color:var(--crimson)} .spec.neu .val{color:var(--text)}
+
+  /* ===== SECTION SYSTEM ===== */
+  section{padding-top:64px}
+  .sec-head{display:flex;align-items:flex-end;gap:14px;margin-bottom:26px;flex-wrap:wrap}
+  .sec-no{font-family:var(--mono);font-weight:800;font-size:14px;color:var(--emerald);
+    border:1px solid var(--line-2);border-radius:8px;padding:5px 10px;background:var(--emerald-dim)}
+  h2{font-family:'Cairo';font-weight:800;font-size:clamp(23px,3.6vw,32px);letter-spacing:-.3px}
+  .sec-sub{color:var(--muted);font-size:15px;width:100%;max-width:760px;margin-top:-12px}
+
+  .card{background:linear-gradient(180deg,var(--card),#10182700);
+    border:1px solid var(--line);border-radius:var(--r);padding:24px}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+
+  .idea{font-size:17px;color:#d4dcec}
+  .idea b{color:var(--emerald);font-weight:700}
+
+  /* limit cards */
+  .limit{position:relative;overflow:hidden}
+  .limit .tag{font-family:var(--mono);font-size:11px;letter-spacing:1px;padding:4px 9px;border-radius:6px;display:inline-block;margin-bottom:14px}
+  .limit.daily{border-color:rgba(255,92,114,.3)}
+  .limit.daily .tag{background:var(--crimson-dim);color:var(--crimson)}
+  .limit.total{border-color:rgba(244,196,78,.3)}
+  .limit.total .tag{background:var(--amber-dim);color:var(--amber)}
+  .limit.goal{border-color:rgba(51,229,161,.3)}
+  .limit.goal .tag{background:var(--emerald-dim);color:var(--emerald)}
+  .limit .big{font-family:var(--mono);font-weight:800;font-size:34px;margin:2px 0 10px}
+  .limit.daily .big{color:var(--crimson)} .limit.total .big{color:var(--amber)} .limit.goal .big{color:var(--emerald)}
+  .limit p{color:var(--muted);font-size:14px}
+
+  /* ===== 10-DAY PLAN ===== */
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  thead th{font-family:'Cairo';font-weight:700;font-size:13.5px;color:var(--muted);
+    text-align:center;padding:14px 10px;border-bottom:1px solid var(--line-2)}
+  tbody td{text-align:center;padding:13px 10px;border-bottom:1px solid var(--line)}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:rgba(255,255,255,.02)}
+  .daycell{font-weight:700;color:var(--text)}
+  td .num{font-weight:700}
+  .barwrap{display:flex;align-items:center;gap:10px;justify-content:flex-end}
+  .bar{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--emerald),#1d8f63);min-width:6px}
+  .bartrack{flex:1;height:8px;border-radius:99px;background:rgba(255,255,255,.05);overflow:hidden;display:flex;justify-content:flex-start}
+  tfoot td{padding:16px 10px;font-family:'Cairo';font-weight:800;border-top:1px solid var(--line-2)}
+  tfoot .g{font-family:var(--mono);font-size:18px}
+
+  /* chart */
+  .chart-card{margin-top:16px}
+  .chart-legend{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:14px}
+  .chart-legend span{display:inline-flex;align-items:center;gap:7px}
+  .dot{width:10px;height:10px;border-radius:99px;display:inline-block}
+  svg{width:100%;height:auto;display:block}
+
+  /* ===== RISK RULES ===== */
+  .rk{display:flex;gap:14px;align-items:flex-start}
+  .rk .ic{flex:0 0 42px;height:42px;border-radius:11px;display:grid;place-items:center;
+    background:var(--emerald-dim);color:var(--emerald);font-size:20px}
+  .rk h4{font-family:'Cairo';font-weight:700;font-size:16px;margin-bottom:4px}
+  .rk p{color:var(--muted);font-size:14px}
+  .rk .figure{font-family:var(--mono);color:var(--emerald);font-weight:700}
+
+  .stopbox{margin-top:16px;border:1px solid rgba(255,92,114,.3);background:var(--crimson-dim);
+    border-radius:var(--r);padding:20px 24px}
+  .stopbox h4{font-family:'Cairo';color:var(--crimson);font-weight:800;font-size:17px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .stopbox ul{list-style:none}
+  .stopbox li{padding:7px 0 7px 0;color:#e7d3d6;font-size:15px;display:flex;gap:10px;align-items:flex-start}
+  .stopbox li::before{content:"◆";color:var(--crimson);font-size:12px;margin-top:6px}
+  .stopbox li b{color:#fff}
+
+  /* ===== 6 RULES ===== */
+  .rule{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--line)}
+  .rule:last-child{border-bottom:none}
+  .rule .n{flex:0 0 38px;height:38px;border-radius:10px;background:var(--ink-2);border:1px solid var(--line-2);
+    display:grid;place-items:center;font-family:var(--mono);font-weight:800;color:var(--emerald)}
+  .rule .body h4{font-family:'Cairo';font-weight:700;font-size:16.5px;margin-bottom:5px}
+  .rule .body p{color:var(--muted);font-size:14.5px}
+  .rule .body .hl{color:var(--text)}
+  .rule .body .calc{font-family:var(--mono);background:var(--surface);border:1px solid var(--line);
+    border-radius:8px;padding:3px 9px;font-size:13px;color:var(--amber);display:inline-block;margin-top:6px}
+  .rule.warn .n{color:var(--crimson)}
+  .rule.ok .n{color:var(--emerald)}
+
+  /* ===== CLOCK ===== */
+  .clock-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .clk h4{font-family:'Cairo';font-weight:700;font-size:16px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .clk .time{font-family:var(--mono);font-weight:800;font-size:20px;color:var(--emerald)}
+  .clk p{color:var(--muted);font-size:14px;margin-top:6px}
+  .timeline{margin-top:18px;background:var(--ink-2);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
+  .timeline h4{font-family:'Cairo';font-weight:700;font-size:15px;color:var(--amber);margin-bottom:14px}
+  .track{position:relative;height:4px;background:rgba(255,255,255,.08);border-radius:99px;margin:36px 8px 46px}
+  .track .seg{position:absolute;top:0;height:4px;border-radius:99px;background:linear-gradient(90deg,var(--emerald),#1d8f63)}
+  .mk{position:absolute;top:-10px;transform:translateX(50%);text-align:center}
+  .mk .d{width:12px;height:12px;border-radius:99px;background:var(--ink);border:2px solid var(--emerald);margin:0 auto}
+  .mk .t{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px;white-space:nowrap}
+  .mk.reset .d{border-color:var(--crimson)} .mk.reset .t{color:var(--crimson)}
+
+  /* ===== FUNDED ===== */
+  .splitvis{display:flex;height:54px;border-radius:12px;overflow:hidden;border:1px solid var(--line-2);margin-bottom:8px}
+  .splitvis .you{flex:80;background:linear-gradient(90deg,var(--emerald),#1d8f63);display:grid;place-items:center;font-family:'Cairo';font-weight:800;color:#04130c}
+  .splitvis .co{flex:20;background:var(--surface);display:grid;place-items:center;font-family:'Cairo';font-weight:700;color:var(--muted);font-size:14px}
+  .kv{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .kv:last-child{border-bottom:none}
+  .kv .k{color:var(--muted)} .kv .v{font-weight:700}
+  .method{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .method:last-child{border-bottom:none}
+  .method .b{font-family:var(--mono);font-weight:800;font-size:12px;width:30px;height:30px;border-radius:8px;
+    background:var(--emerald-dim);color:var(--emerald);display:grid;place-items:center}
+  .method .nm{font-weight:700} .method .ds{color:var(--muted);font-size:13.5px;margin-right:auto}
+
+  /* ===== PSYCHOLOGY ===== */
+  .psy h4{font-family:'Cairo';font-weight:700;font-size:15.5px;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+  .psy h4 .e{font-size:18px}
+  .psy ul{list-style:none}
+  .psy li{font-size:14px;color:#cfd7e6;padding:6px 0 6px 0;display:flex;gap:9px;align-items:flex-start;line-height:1.6}
+  .psy li::before{content:"✓";color:var(--emerald);font-weight:800;margin-top:1px}
+
+  /* ===== WARNINGS ===== */
+  .warns{border:1px solid rgba(255,92,114,.35);background:linear-gradient(180deg,var(--crimson-dim),transparent);
+    border-radius:var(--r);padding:26px 28px}
+  .warns h2{color:var(--crimson);margin-bottom:10px}
+  .warns .grid{margin-top:18px}
+  .warn-item{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+  .warn-item .x{color:var(--crimson);font-weight:800;font-size:18px;line-height:1.4}
+  .warn-item b{color:#fff}
+
+  /* ===== FOOTER ===== */
+  .final{margin-top:64px;text-align:center;padding:46px 24px;border:1px solid var(--line);border-radius:var(--r);
+    background:radial-gradient(500px 240px at 50% 0%,rgba(51,229,161,.08),transparent 70%)}
+  .final .tro{font-size:30px;margin-bottom:12px}
+  .final h3{font-family:'Cairo';font-weight:900;font-size:clamp(22px,4vw,30px);margin-bottom:12px}
+  .final p{color:var(--muted);max-width:560px;margin:0 auto;font-size:16px}
+  .final .em{color:var(--emerald)}
+  .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+  .links a{font-family:var(--mono);font-size:13.5px;color:var(--text);text-decoration:none;
+    border:1px solid var(--line-2);border-radius:10px;padding:11px 18px;transition:.2s;background:var(--ink-2)}
+  .links a:hover{border-color:var(--emerald);color:var(--emerald);transform:translateY(-2px)}
+  .final .disclaimer{margin:40px auto 0;color:var(--muted-2);font-size:12.5px;text-align:center;max-width:760px;line-height:1.7}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+  /* responsive */
+  @media(max-width:880px){
+    .specs{grid-template-columns:repeat(3,1fr)}
+    .g4{grid-template-columns:1fr 1fr}
+    .g3{grid-template-columns:1fr}
+    .clock-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:560px){
+    .specs{grid-template-columns:1fr 1fr}
+    .g2,.g4{grid-template-columns:1fr}
+    .hide-sm{display:none}
+    .spec .val{font-size:19px}
+  }
+  @media print{
+    body{background:#fff;color:#111}
+    .rv{opacity:1;transform:none}
+    .hero-glow,.final{background:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hero-glow"></div>
+  <div class="hero">
+    <div class="brandrow">
+      <div class="brand">EARN<b>2</b>TRADE</div>
+      <div class="pill">TCP50 PLAN</div>
+    </div>
+    <div class="eyebrow">دليل مبسّط لاجتياز التقييم</div>
+    <h1>خطة <span class="x">TCP50</span><br>من التقييم إلى حساب مموّل</h1>
+    <p class="sub">شرح واضح ومنظّم لقواعد الحساب، خطة الأرباح المقترحة على 10 أيام، وإدارة المخاطر والانضباط النفسي — كل ما تحتاجه في مكان واحد لتجتاز التقييم بثبات.</p>
+
+    <div class="specs">
+      <div class="spec neu"><div class="lab">رأس المال</div><div class="val">$50,000</div></div>
+      <div class="spec go"><div class="lab">هدف الربح</div><div class="val">$3,000</div></div>
+      <div class="spec bad"><div class="lab">أقصى خسارة يومية</div><div class="val">$1,100</div></div>
+      <div class="spec bad"><div class="lab">أقصى خسارة كلية</div><div class="val">$2,000</div></div>
+      <div class="spec neu"><div class="lab">أقصى عدد عقود</div><div class="val">6</div></div>
+      <div class="spec neu"><div class="lab">أدنى أيام تداول</div><div class="val">10</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 01 IDEA -->
+  <section class="rv">
+    <div class="sec-head"><span class="sec-no">01</span><h2>الفكرة باختصار</h2></div>
+    <div class="card">
+      <p class="idea">TCP50 ليس مسابقة ربح سريع، بل <b>اختبار انضباط</b>. مهمتك أن تحقق <b>3,000$</b> من الأرباح على حساب افتراضي قيمته <b>50,000$</b> خلال <b>10 أيام تداول على الأقل</b> — دون أن تخسر <b>1,100$</b> في يوم واحد أو <b>2,000$</b> إجمالاً. إذا أثبتّ أنك تتداول بخطة ثابتة، تحصل على حساب مموّل حقيقي بتقسيم أرباح <b>80% لك</b>.</p>
+    </div>
+  </section>
+
+  <!-- 02 LIMITS -->
+  <section class="rv">
+    <div class="sec-head"><span class="sec-no">02</span><h2>الأرقام الثلاثة التي يجب أن تحفظها</h2></div>
+    <p class="sec-sub">هدف تطمح للوصول إليه، وحدّان لا يجب أن تلمسهما أبداً. تجاوز أي حدّ خسارة = إيقاف فوري للحساب.</p>
+    <div class="grid g3">
+      <div class="card limit goal">
+        <span class="tag">الهدف ↑</span>
+        <div class="big">+$3,000</div>
+        <p>إجمالي الربح المطلوب لاجتياز التقييم. يُفضّل الوصول بين <span class="num">3,000$</span> و <span class="num">3,300$</span> دون مبالغة.</p>
+      </div>
+      <div class="card limit daily">
+        <span class="tag">حدّ يومي ↓</span>
+        <div class="big">−$1,100</div>
+        <p>أقصى خسارة مسموحة <b>في يوم واحد</b>. عند بلوغها يُغلق الحساب. حدّك الشخصي المقترح أقسى بكثير: <span class="num">500$</span> فقط.</p>
+      </div>
+      <div class="card limit total">
+        <span class="tag">حدّ كلي ↓</span>
+        <div class="big">−$2,000</div>
+        <p>أقصى خسارة <b>تراكمية</b> من بداية الحساب وحتى آخر يوم. تتحرك مع أرباحك، فلا تدعها تقترب.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 PLAN -->
+  <section class="rv">
+    <div class="sec-head"><span class="sec-no">03</span><h2>خطة الأرباح المقترحة — 10 أيام</h2></div>
+    <p class="sec-sub">توزيع متوازن يوصلك للهدف دون الاعتماد على يوم واحد ضخم. لاحظ أن أكبر يوم (<span class="num">750$</span>) يبقى تحت سقف الاتساق (<span class="num">900$</span>).</p>
+
+    <div class="card" style="padding:8px 18px">
+      <table>
+        <thead>
+          <tr><th>اليوم</th><th>الربح المستهدف</th><th>الربح التراكمي</th><th class="hide-sm">التقدّم نحو 3,000$</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="daycell">اليوم 1</td><td><span class="num g">+$350</span></td><td><span class="num">$350</span></td><td class="hide-sm"><div class="bartrack"><div class="bar" style="width:11.6%"></div></div></td></tr>
+          <tr><td class="daycell">اليوم 2</td><td><span class="num g">+$200</span></td><td><span class="num">$550</span></td><td class="hide-sm"><div class="bartrack"><div class="bar" style="width:18.3%"></div></div></td></tr>
+          <tr><td class="daycell">اليوم 3</td><td><span class="num g">+$750</span></td><td><span class="num">$1,300</span></td><td class="hide-sm"><div class="bartrack"><div class="bar" style="width:43.3%"></div></div></td></tr>
+          <tr><td class="daycell">اليوم 4</td><td><span class="num g">+$500</span></td><td><span class="num">$1,800</span></td><td class="hide-sm"><div class="bartrack"><div class="bar" style="width:60%"></div></div></td></tr>
+          <tr><td class="daycell">اليوم 5</td><td><span class="num g">+$450</span></td><td><span class="num">$2,250</span></td><td class="hide-sm"><div class="bartrack"><div class="bar" style="width:75%"></div></div></td></tr>
+          <tr><td class="daycell">اليوم 6</td><td><span class="num g">+$150</span></td><td><span class="num">$2,400</span></td><td class="hide-sm"><div class="bartrack"><div class="bar" style="width:80%"></div></div></td></tr>
+          <tr><td class="daycell">اليوم 7</td><td><span class="num g">+$200</span></td><td><span class="num">$2,600</span></td><td class="hide-sm"><div class="bartrack"><div class="bar" style="width:86.6%"></div></div></td></tr>
+          <tr><td class="daycell">اليوم 8</td><td><span class="num g">+$200</span></td><td><span class="num">$2,800</span></td><td class="hide-sm"><div class="bartrack"><div class="bar" style="width:93.3%"></div></div></td></tr>
+          <tr><td class="daycell">اليوم 9</td><td><span class="num g">+$150</span></td><td><span class="num">$2,950</span></td><td class="hide-sm"><div class="bartrack"><div class="bar" style="width:98.3%"></div></div></td></tr>
+          <tr><td class="daycell">اليوم 10</td><td><span class="num g">+$100</span></td><td><span class="num">$3,050</span></td><td class="hide-sm"><div class="bartrack"><div class="bar" style="width:100%"></div></div></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>الإجمالي</td><td class="g num">+$3,050</td><td colspan="2" class="m" style="font-family:'IBM Plex Sans Arabic';font-weight:600">تجاوزٌ بسيط للهدف = هامش أمان</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="card chart-card">
+      <svg viewBox="0 0 1000 320" role="img" aria-label="منحنى الربح التراكمي على 10 أيام">
+        <line x1="60" y1="40" x2="960" y2="40" stroke="var(--emerald)" stroke-width="1.5" stroke-dasharray="6 7" opacity="0.55"/>
+        <text x="960" y="32" fill="var(--emerald)" font-size="14" font-family="JetBrains Mono" text-anchor="end">الهدف $3,000</text>
+        <line x1="60" y1="280" x2="960" y2="280" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+        <polygon points="60,252 160,236 260,176 360,136 460,100 560,88 660,72 760,56 860,44 960,36 960,280 60,280"
+          fill="url(#fill)" opacity="0.9"/>
+        <polyline points="60,252 160,236 260,176 360,136 460,100 560,88 660,72 760,56 860,44 960,36"
+          fill="none" stroke="var(--emerald)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(51,229,161,.28)"/>
+            <stop offset="100%" stop-color="rgba(51,229,161,0)"/>
+          </linearGradient>
+        </defs>
+        <g fill="var(--emerald)">
+          <circle cx="60" cy="252" r="4.5"/><circle cx="160" cy="236" r="4.5"/><circle cx="260" cy="176" r="4.5"/>
+          <circle cx="360" cy="136" r="4.5"/><circle cx="460" cy="100" r="4.5"/><circle cx="560" cy="88" r="4.5"/>
+          <circle cx="660" cy="72" r="4.5"/><circle cx="760" cy="56" r="4.5"/><circle cx="860" cy="44" r="4.5"/>
+          <circle cx="960" cy="36" r="5.5" stroke="#0A0F1C" stroke-width="2"/>
+        </g>
+        <g fill="var(--muted)" font-size="13" font-family="JetBrains Mono" text-anchor="middle">
+          <text x="60" y="305">1</text><text x="160" y="305">2</text><text x="260" y="305">3</text>
+          <text x="360" y="305">4</text><text x="460" y="305">5</text><text x="560" y="305">6</text>
+          <text x="660" y="305">7</text><text x="760" y="305">8</text><text x="860" y="305">9</text><text x="960" y="305">10</text>
+        </g>
+      </svg>
+      <div class="chart-legend">
+        <span><span class="dot" style="background:var(--emerald)"></span> الربح التراكمي</span>
+        <span><span class="dot" style="background:var(--emerald);opacity:.5"></span> خط الهدف 3,000$</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 RISK -->
+  <section class="rv">
+    <div class="sec-head"><span class="sec-no">04</span><h2>قواعد إدارة المخاطر</h2></div>
+    <p class="sec-sub">القواعد التي تحميك من نفسك. الالتزام بها أهم من أي صفقة رابحة.</p>
+    <div class="grid g2">
+      <div class="card rk">
+        <div class="ic">◈</div>
+        <div><h4>المخاطرة لكل صفقة</h4>
+          <p>من <span class="figure">0.5%</span> إلى <span class="figure">1%</span> من رأس المال، أي <span class="figure">250$ – 500$</span> كحدّ أقصى للخسارة في الصفقة الواحدة.</p></div>
+      </div>
+      <div class="card rk">
+        <div class="ic">◎</div>
+        <div><h4>الهدف اليومي</h4>
+          <p>اكتفِ بين <span class="figure">250$</span> و <span class="figure">350$</span> في اليوم. لا تطمع لتجاوز <span class="figure">350$</span> في الجلسة الواحدة.</p></div>
+      </div>
+      <div class="card rk">
+        <div class="ic">▦</div>
+        <div><h4>عدد الصفقات</h4>
+          <p>من <span class="figure">2</span> إلى <span class="figure">5</span> صفقات فقط يومياً. الجودة أهم من الكمية بكثير.</p></div>
+      </div>
+      <div class="card rk">
+        <div class="ic">◷</div>
+        <div><h4>حدّك الشخصي</h4>
+          <p>رغم أن الشركة تسمح بخسارة <span class="figure">1,100$</span>، اجعل حدّك الخاص <span class="figure">500$</span> فقط ثم توقّف.</p></div>
+      </div>
+    </div>
+
+    <div class="stopbox">
+      <h4>⛔ متى تتوقف فوراً؟</h4>
+      <ul>
+        <li><span>إذا <b>خسرت 500$</b> في اليوم → أغلق المنصة فوراً، لا «تعويض».</span></li>
+        <li><span>إذا <b>حققت هدفك اليومي</b> → توقّف وأنت رابح، لا تعيد ما كسبت.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 05 RULES -->
+  <section class="rv">
+    <div class="sec-head"><span class="sec-no">05</span><h2>6 قواعد لا تُخالَف</h2></div>
+    <p class="sec-sub">مخالفة أيّ منها قد تُلغي الحساب أو السحب. اقرأها جيداً.</p>
+    <div class="card">
+      <div class="rule ok">
+        <div class="n">1</div>
+        <div class="body"><h4>قاعدة الاتساق (Consistency)</h4>
+          <p>يجب ألا يتجاوز <span class="hl">أكبر يوم ربح</span> نسبة <span class="hl">30%</span> من هدف الربح الكلي، حتى لا تبدو أرباحك معتمدة على صدفة واحدة.</p>
+          <span class="calc">30% × 3,000$ = 900$ → لا تتجاوز 900$ في أي يوم</span></div>
+      </div>
+      <div class="rule warn">
+        <div class="n">2</div>
+        <div class="body"><h4>الحد الأقصى للخسارة اليومية</h4>
+          <p>لا تتجاوز <span class="hl">1,100$</span> خسارة في اليوم الواحد. عند بلوغ هذا الحد يتم <span class="hl">إيقاف الحساب</span> تلقائياً.</p></div>
+      </div>
+      <div class="rule warn">
+        <div class="n">3</div>
+        <div class="body"><h4>الحد الأقصى للخسارة الكلية</h4>
+          <p>يجب ألا تصل خسارتك التراكمية إلى <span class="hl">2,000$</span> محسوبة من بداية الحساب وحتى آخر يوم.</p></div>
+      </div>
+      <div class="rule ok">
+        <div class="n">4</div>
+        <div class="body"><h4>الحد الأدنى لأيام التداول</h4>
+          <p>يجب أن تتداول في <span class="hl">10 أيام مختلفة على الأقل</span>، حتى لو وصلت للهدف مبكراً.</p></div>
+      </div>
+      <div class="rule ok">
+        <div class="n">5</div>
+        <div class="body"><h4>استخدام EA أو نسخ الصفقات</h4>
+          <p>مسموح فقط بما تسمح به الشركة. <span class="hl">نسخ الصفقات من حسابات خارجية ممنوع</span>.</p></div>
+      </div>
+      <div class="rule ok">
+        <div class="n">6</div>
+        <div class="body"><h4>الأخبار عالية التأثير</h4>
+          <p>لا يوجد منع صريح، لكن <span class="hl">التداول وقت الأخبار يبقى على مسؤوليتك</span> بسبب التقلب الحاد.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 CLOCK -->
+  <section class="rv">
+    <div class="sec-head"><span class="sec-no">06</span><h2>متى يبدأ اليوم التداولي وينتهي؟</h2></div>
+    <p class="sec-sub">«اليوم» في التقييم لا يبدأ منتصف الليل، بل يتبع توقيت الشركة. معرفة ساعة إعادة التعيين تمنعك من احتساب صفقتين في نفس اليوم بالخطأ.</p>
+    <div class="clock-grid">
+      <div class="card clk">
+        <h4>🕔 حسب توقيت الشركة (CT)</h4>
+        <div class="time">5:00 مساءً → 5:00 مساءً</div>
+        <p>كل يوم تداول يبدأ الساعة 5:00 مساءً بتوقيت وسط الولايات المتحدة، وينتهي في 5:00 مساءً CT من اليوم التالي. هذه هي «ساعة إعادة التعيين».</p>
+      </div>
+      <div class="card clk">
+        <h4>🇩🇿 حسب توقيت الجزائر</h4>
+        <div class="time">≈ 11:00 مساءً / 12:00 منتصف الليل</div>
+        <p>الفرق مع CT هو 7 ساعات شتاءً و6 ساعات صيفاً. أي أن اليوم الجديد يبدأ في الجزائر حوالي 11 مساءً (شتاءً) أو منتصف الليل (صيفاً).</p>
+      </div>
+    </div>
+    <div class="timeline">
+      <h4>مثال: صفقتان في نفس يوم التداول</h4>
+      <div class="track">
+        <div class="seg" style="right:8%;width:64%"></div>
+        <div class="mk" style="right:8%"><div class="d"></div><div class="t">10:00 صباحاً</div></div>
+        <div class="mk" style="right:42%"><div class="d"></div><div class="t">6:00 مساءً</div></div>
+        <div class="mk reset" style="right:80%"><div class="d"></div><div class="t">5:00 مساءً CT — يوم جديد</div></div>
+      </div>
+      <p class="m" style="font-size:14px;margin-top:6px">صفقة الـ10 صباحاً وصفقة الـ6 مساءً تُحسبان في <span class="g">نفس يوم التداول</span> ما دامتا قبل ساعة إعادة التعيين.</p>
+    </div>
+  </section>
+
+  <!-- 07 FUNDED -->
+  <section class="rv">
+    <div class="sec-head"><span class="sec-no">07</span><h2>بعد الاجتياز: الحساب المموّل والسحب</h2></div>
+    <div class="grid g2">
+      <div class="card">
+        <h4 style="font-family:'Cairo';font-weight:700;font-size:16px;margin-bottom:14px">تقسيم الأرباح</h4>
+        <div class="splitvis"><div class="you">80% لك</div><div class="co">20%</div></div>
+        <p class="m" style="font-size:13.5px;margin-bottom:12px">للمتداول 80% — للشركة 20%.</p>
+        <div class="kv"><span class="k">إمكانية السحب</span><span class="v g">أسبوعياً</span></div>
+        <div class="kv"><span class="k">الحد الأدنى للسحب</span><span class="v"><span class="num">$100</span> صافٍ</span></div>
+        <div class="kv"><span class="k">معالجة السحوبات</span><span class="v a">كل أربعاء</span></div>
+        <div class="kv"><span class="k">آخر موعد للطلب</span><span class="v">الجمعة 2:00م CT</span></div>
+      </div>
+      <div class="card">
+        <h4 style="font-family:'Cairo';font-weight:700;font-size:16px;margin-bottom:14px">طرق السحب المتاحة</h4>
+        <div class="method"><span class="b">1</span><span class="nm">Rise</span><span class="ds">أحد مزوّدي الدفع الأساسيين</span></div>
+        <div class="method"><span class="b">2</span><span class="nm">Deel</span><span class="ds">متاح لبعض المتداولين</span></div>
+        <div class="method"><span class="b">3</span><span class="nm">تحويل بنكي</span><span class="ds">إلى حسابك البنكي مباشرة</span></div>
+        <div class="method"><span class="b">4</span><span class="nm">عملات رقمية</span><span class="ds">في بعض الحالات حسب الدولة</span></div>
+        <p class="m" style="font-size:13.5px;margin-top:14px">أفضل توقيت لإرسال الطلب: الخميس أو صباح الجمعة قبل 2:00م CT لإدراجه في دفعة الأربعاء القادمة.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px;border-color:rgba(244,196,78,.25)">
+      <h4 style="font-family:'Cairo';font-weight:700;font-size:16px;margin-bottom:8px;color:var(--amber)">🇩🇿 هل تدعم الجزائر؟</h4>
+      <p class="m" style="font-size:15px">لا يوجد منع صريح للجزائر في قواعد الشركة. لكن طرق السحب المتاحة تعتمد على <span style="color:var(--text)">مزوّد الدفع المُخصّص لك</span>، وقد تختلف حسب بلد الإقامة. تحقّق من خياراتك بعد التمويل.</p>
+    </div>
+  </section>
+
+  <!-- 08 PSYCHOLOGY -->
+  <section class="rv">
+    <div class="sec-head"><span class="sec-no">08</span><h2>الخطة النفسية والانضباط</h2></div>
+    <p class="sec-sub">التقييم يُجتاز بالعقل قبل التحليل. التزم بهذه القوائم في كل مرحلة من يومك.</p>
+    <div class="grid g4">
+      <div class="card psy">
+        <h4><span class="e">📋</span> قبل الصفقة</h4>
+        <ul>
+          <li>لديك خطة واضحة</li>
+          <li>السوق في أفضل حالاته لك</li>
+          <li>نسبة المخاطرة محسوبة</li>
+          <li>الهدف والوقف محدّدان مسبقاً</li>
+          <li>لا تدخل بدون سبب</li>
+        </ul>
+      </div>
+      <div class="card psy">
+        <h4><span class="e">🎯</span> أثناء التداول</h4>
+        <ul>
+          <li>التزم بخطتك</li>
+          <li>لا تحرّك وقف الخسارة</li>
+          <li>لا تضاعف العقود عند الخسارة</li>
+          <li>أغلق المنصة عند بلوغ حدّك</li>
+          <li>ركّز على جودة التنفيذ</li>
+        </ul>
+      </div>
+      <div class="card psy">
+        <h4><span class="e">📝</span> بعد الإغلاق</h4>
+        <ul>
+          <li>سجّل صفقاتك</li>
+          <li>راجع أخطاءك</li>
+          <li>تعلّم شيئاً كل يوم</li>
+          <li>جدّد طاقتك</li>
+          <li>استعدّ لليوم الجديد</li>
+        </ul>
+      </div>
+      <div class="card psy">
+        <h4><span class="e">🧠</span> الانضباط</h4>
+        <ul>
+          <li>لا تلاحق السوق</li>
+          <li>لا تدع الخسارة تقود قراراتك</li>
+          <li>كن صبوراً ومنضبطاً</li>
+          <li>التداول ماراثون لا سباق</li>
+          <li>الاستقرار أهم من الربح السريع</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 WARNINGS -->
+  <section class="rv">
+    <div class="warns">
+      <div class="sec-head" style="margin-bottom:6px"><span class="sec-no" style="color:var(--crimson);background:var(--crimson-dim)">09</span><h2>أهم التحذيرات</h2></div>
+      <p class="sec-sub" style="color:#e7c4ca">أي من هذه المخالفات يؤدي إلى إلغاء الحساب — وغالباً <b>دون استرداد الرسوم</b>.</p>
+      <div class="grid g2">
+        <div class="warn-item"><span class="x">✕</span><span>تجاوز <b>حدّ الخسارة اليومية</b> (1,100$) → إلغاء الحساب.</span></div>
+        <div class="warn-item"><span class="x">✕</span><span>تجاوز <b>حدّ الخسارة الكلية</b> (2,000$) → إلغاء الحساب.</span></div>
+        <div class="warn-item"><span class="x">✕</span><span>عدم إكمال <b>الحد الأدنى لأيام التداول</b> (10 أيام).</span></div>
+        <div class="warn-item"><span class="x">✕</span><span>مخالفة <b>قواعد الشركة</b> → إلغاء بدون استرداد.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <div class="final rv">
+    <div class="tro">🏆</div>
+    <h3>نصيحة أخيرة</h3>
+    <p>هدفك ليس الربح السريع، بل إثبات أنك <span class="em">متداول منضبط</span> يستحق رأس مال أكبر. التزم بالخطة بهدوء… وستنجح بإذن الله.</p>
+    <div class="links">
+      <a href="https://www.earn2trade.com" target="_blank" rel="noopener">🌐 الموقع الرسمي</a>
+      <a href="https://help.earn2trade.com" target="_blank" rel="noopener">❔ الأسئلة الشائعة</a>
+      <a href="https://www.earn2trade.com" target="_blank" rel="noopener">📈 Trader Career Path</a>
+    </div>
+    <p class="disclaimer">هذا الملف ملخّص تعليمي أُعدّ من الإنفوغرافيك الخاص بك لتوضيح القواعد، وليس نصيحة مالية. قد تتغيّر شروط الشركة من وقت لآخر، لذا اعتمد دائماً على القواعد الرسمية المحدّثة في earn2trade.com قبل اتخاذ أي قرار. التداول ينطوي على مخاطرة.</p>
+  </div>
+
+</div>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

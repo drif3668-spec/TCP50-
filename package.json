@@ -1,0 +1,25 @@
+{
+  "name": "tcp50-earn2trade-guide",
+  "version": "1.0.0",
+  "description": "دليل احترافي لاجتياز حساب TCP50 من Earn2Trade — خطة الأرباح، قواعد المخاطر، والانضباط النفسي",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . --listen 3000",
+    "dev":   "npx live-server --port=3000 --open=index.html",
+    "lint":  "echo 'No build step required — plain HTML/CSS/JS project'"
+  },
+  "keywords": [
+    "TCP50",
+    "Earn2Trade",
+    "prop-firm",
+    "trading",
+    "futures",
+    "evaluation"
+  ],
+  "author": "drif3668-spec",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.4"
+  }
+}
